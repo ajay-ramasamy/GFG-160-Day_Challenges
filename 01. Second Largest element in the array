@@ -1,0 +1,16 @@
+class Solution{
+    public int getSecondLargest(int[] arr){
+        if(arr.length < 2) return -1;
+        int large = 0, second = 0;
+        for(int num : arr){
+            if(num > large){
+                second = large;
+                large = num;
+            }
+            else if(num > second && num < large){
+                second = num;
+            }
+        }
+        return (second == 0) ? -1 : second;
+    }
+}
