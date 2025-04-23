@@ -1,0 +1,45 @@
+class Solution {
+    
+    public static String trim(String s){
+        int i=0;
+        while(i<s.length()-1 && s.charAt(i)=='0'){
+            i++;
+        }
+        return s.substring(i);
+    }
+    public String addBinary(String a, String b) {
+        StringBuilder res = new StringBuilder();
+        a = trim(a);
+        b = trim(b);
+        
+        int m = a.length();
+        int n = b.length();
+        
+        if(m<n){
+            return addBinary(b,a);
+        }
+        
+        int j = n-1;
+        int carry = 0;
+        
+        for(int i=m-1; i>=0; i--){
+            int bit1 = a.charAt(i)-'0';
+            int sum = bit1 + carry;
+            
+            if(j>=0){
+                int bit2 = b.charAt(j)-'0';
+                sum += bit2;
+                j--;
+            }
+            int bit = sum %2;
+            carry = sum/2;
+            
+            res.append((char)(bit+'0'));
+        }
+        if(carry>0){
+            res.append('1');
+        }
+        
+        return res.reverse().toString();
+    }
+}
