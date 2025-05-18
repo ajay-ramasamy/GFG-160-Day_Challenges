@@ -1,0 +1,25 @@
+class Solution {
+    // Function to search a given number in row-column sorted matrix.
+    public boolean searchMatrix(int[][] mat, int x) {
+        
+        int n = mat.length;
+        int m = mat[0].length;
+        int lo = 0, hi= n*m-1;
+        
+        while(lo <= hi){
+            int mid = (lo +hi)/2;
+            int ele = mat[mid/m][mid%m];
+            if(ele == x){
+                return true;
+            }
+            else if(ele < x){
+                lo = mid+1;
+            }
+            else{
+                hi = mid-1;
+            }
+        }
+        return false;
+        
+    }
+}
