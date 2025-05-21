@@ -1,0 +1,21 @@
+class Solution {
+
+    int countPairs(int arr[], int target) {
+        
+        int n = arr.length;
+        Map<Integer,Integer> fre = new HashMap<>();
+        int c=0;
+        
+        for(int i=0;i<n;i++){
+            if(fre.containsKey(target- arr[i])){
+                c += fre.get(target-arr[i]);
+            }
+            
+            fre.put(arr[i], fre.getOrDefault(arr[i],0) +1);
+        }
+        
+        return c;
+        
+        
+    }
+}
