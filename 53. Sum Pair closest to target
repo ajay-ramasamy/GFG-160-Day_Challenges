@@ -1,0 +1,32 @@
+class Solution {
+    public List<Integer> sumClosest(int[] arr, int target) {
+        
+        int n = arr.length;
+        Arrays.sort(arr);
+        List<Integer> res = new ArrayList<>();
+        int min = Integer.MAX_VALUE;
+        
+        int left =0, right=n-1;
+        
+        while(left<right){
+            int curr = arr[left] + arr[right];
+            
+            if(Math.abs(target-curr) < min){
+                min = Math.abs(target-curr);
+                res = Arrays.asList(arr[left], arr[right]);
+            }
+            
+            if(curr < target){
+                left++;
+            }
+            else if(curr > target){
+                right--;
+            }
+            else{
+                return res;
+            }
+        }
+        return res;
+        
+    }
+}
