@@ -1,0 +1,40 @@
+class Solution {
+
+    int countPairs(int arr[], int target) {
+        
+        int res =0;
+        int n = arr.length;
+        int left=0,right=n-1;
+        
+        while(left<right){
+            if(arr[left] + arr[right] < target){
+                left++;
+            }
+            else if(arr[left] + arr[right] > target){
+                right--;
+            }
+            else{
+                int c1 =0, c2=0;
+                int e1=arr[left] , e2 = arr[right];
+                
+                while(left <= right && arr[left] == e1){
+                    left++;
+                    c1++;
+                }
+                while(left<=right && arr[right] == e2){
+                    right--;
+                    c2++;
+                }
+                
+                if(e1 == e2){
+                    res += (c1 * (c1-1))/2;
+                }
+                else{
+                    res += (c1*c2);
+                }
+            }
+            
+        }
+        return res;
+    }
+}
