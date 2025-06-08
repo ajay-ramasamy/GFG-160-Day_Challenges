@@ -1,0 +1,20 @@
+class Solution {
+    // Function to find equilibrium point in the array.
+    public static int findEquilibrium(int arr[]) {
+       
+       int presum = 0, total=0;
+       
+       for(int ele : arr){
+           total += ele;
+       }
+       
+       for(int p=0; p<arr.length; p++){
+           int sufsum = total - presum - arr[p];
+           if(presum == sufsum){
+               return p;
+           }
+           presum += arr[p];
+       }
+       return -1;
+    }
+}
